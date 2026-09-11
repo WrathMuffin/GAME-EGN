@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         float x = Input.GetAxis("Horizontal");
-        float y = Input.GetAxis("Vertical");
+        //float y = Input.GetAxis("Vertical");
 
         isGrounded = charCon.isGrounded;
 
@@ -30,15 +30,15 @@ public class PlayerController : MonoBehaviour
             playerVel.y = 0f;
         }
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetAxis("Jump") == 1 && isGrounded)
         {
             playerVel.y += Mathf.Sqrt(jumpPow * -3.0f * gravity);
         }
 
         playerVel.y += gravity * Time.deltaTime;
-        Vector3 move = transform.right * x + transform.forward * y;
+        Vector3 move = transform.right * x; // transform.forward * y;
+
         charCon.Move(move * speed * Time.deltaTime);
         charCon.Move(playerVel * Time.deltaTime);
-
     }
 }
