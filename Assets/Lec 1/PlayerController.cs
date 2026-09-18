@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
         {
             playerVel.y = 0f;
         }
+        
 
         if (Input.GetAxis("Jump") == 1 && isGrounded)
         {
