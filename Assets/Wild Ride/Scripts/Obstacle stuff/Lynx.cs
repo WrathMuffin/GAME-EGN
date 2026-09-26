@@ -18,9 +18,5 @@ public class Lynx : Obstacle
     {
         base.Behaviour();
         Debug.Log("You hear a Lynx growled");
-
-        // turn around and run to forest
-        speed = 20f;
-        transform.Rotate(0, 180, 0);
     }
 }

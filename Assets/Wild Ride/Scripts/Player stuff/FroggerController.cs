@@ -1,7 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.UIElements;
 
 public class FroggerController : MonoBehaviour
 {
@@ -9,18 +7,17 @@ public class FroggerController : MonoBehaviour
     [SerializeField] protected float leapSpeed = 10.0f;
     [SerializeField] protected float hp = 10f;
 
+    [SerializeField] private LayerMask blockerLayer;
+
     //private Animator anime;
     protected bool isLeaping = false;
 
-    private BoxCollider boxCollider;
     private float currentHp;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
     {
         //anime = GetComponent<Animator>();
-        boxCollider = GetComponent<BoxCollider>();
-
         currentHp = hp;
     }
 
@@ -32,7 +29,7 @@ public class FroggerController : MonoBehaviour
             return;
         }
 
-        if (currentHp > 0)
+        if (currentHp > -10)
         {
             if (Input.GetKeyDown(KeyCode.W))
             {
@@ -59,27 +56,32 @@ public class FroggerController : MonoBehaviour
 
     protected virtual void Rotation(Vector3 dir)
     {
+        //  future lerp be here?
         transform.rotation = Quaternion.LookRotation(dir);
     }
 
     protected virtual bool TryLeap(Vector3 dir)
     {
-        Rotation(dir);
+        BoxCollider collider = GetComponent<BoxCollider>();
 
-        if (isBlocked(dir))
+        Vector3 center = collider.bounds.center;
+        Vector3 extents = collider.bounds.extents;
+
+        if (Physics.BoxCast(center, extents, dir, out RaycastHit hit, transform.rotation, leapDist, blockerLayer))
         {
+            // try leap is false because anything in the blocker layer is blocking the playeer
             return false;
         }
 
+        Rotation(dir);
         StartCoroutine(Leap(dir));
+
         return true;
     }
 
     protected IEnumerator Leap(Vector3 dir)
     {
         isLeaping = true;
-
-        //Rotation(dir);
 
         Vector3 startPos = transform.position;
         Vector3 endPos = startPos + dir * leapDist;
@@ -100,34 +102,26 @@ public class FroggerController : MonoBehaviour
         isLeaping = false;
     }
 
-    protected virtual bool isBlocked(Vector3 dir)
+    public void Hit()
     {
-        Vector3 center = boxCollider.bounds.center;
+        currentHp -= 1.0f;
 
-        Vector3 half = boxCollider.bounds.extents;
+        Debug.Log("Ouch! HP is now " + currentHp);
 
-        // make box from center forward to half leap
-        RaycastHit[] hits = Physics.BoxCastAll(center, half, dir, transform.rotation, leapDist / 2.0f);
-
-        foreach (RaycastHit h in hits)
+        if (currentHp <= 0.0f)
         {
-            if (h.collider.gameObject == gameObject)
-            {
-                // player GET STUCKKK OMGG
-                continue;
-            }
+            currentHp = 0.0f;
+            Debug.Log("You dead");
 
-            if (h.collider.CompareTag("Animals"))
-            {
-                hp -= 1;
-
-                // continue skips everything and go to next iteration of loo p
-                continue;
-            }
-
-            return true;
+            transform.localScale = new Vector3(1.0f, 0.1f, 1.0f);
         }
+    }
 
-        return false;
+    protected virtual void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Animals"))
+        {
+            Hit();
+        }
     }
 }

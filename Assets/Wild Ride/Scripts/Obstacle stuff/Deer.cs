@@ -18,9 +18,5 @@ public class Deer : Obstacle
     {
         base.Behaviour();
         Debug.Log("Oh deer!");
-
-        // stay at the spot and falls over
-        speed = 0f;
-        transform.Rotate(0, 0, 90f);
     }
 }
