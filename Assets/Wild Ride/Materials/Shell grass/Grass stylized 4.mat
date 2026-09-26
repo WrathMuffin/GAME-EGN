@@ -25,18 +25,21 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - _ALPHAPREMULTIPLY_ON
   - _ALPHATEST_ON
+  - _SURFACE_TYPE_TRANSPARENT
   - _TIME_TYPE_SINE
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2450
+  m_CustomRenderQueue: 3000
   stringTagMap:
-    RenderType: TransparentCutout
+    RenderType: Transparent
   disabledShaderPasses:
   - MOTIONVECTORS
   - SHADOWCASTER
+  - DepthOnly
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -105,7 +108,7 @@ Material:
     m_Floats:
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 1
-    - _AlphaToMask: 1
+    - _AlphaToMask: 0
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
@@ -116,8 +119,8 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _DstBlend: 0
-    - _DstBlendAlpha: 0
+    - _DstBlend: 10
+    - _DstBlendAlpha: 10
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -130,30 +133,30 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Shell_ID: 4
-    - _Shell_amount: 7
+    - _Shell_amount: 15
     - _Shell_color_strength: 1
-    - _Shell_offset: 0.5
+    - _Shell_offset: 1.5
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
-    - _Surface: 0
+    - _Surface: 1
     - _TIME_TYPE: 0
     - _Wind_height: 3
     - _Wind_speed: 6.7
     - _WorkflowMode: 1
     - _XRMotionVectorsPass: 1
     - _ZTest: 4
-    - _ZWrite: 1
+    - _ZWrite: 0
     - _ZWriteControl: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Shell_bottom_color: {r: 0.3490566, g: 0.34083885, b: 0.27825737, a: 1}
+    - _Shell_bottom_color: {r: 0.09162514, g: 0.267697, b: 0.2735849, a: 1}
     - _Shell_scale: {r: 20, g: 1, b: 0, a: 0}
-    - _Shell_top_color: {r: 0.58877623, g: 0.754717, b: 0.25987896, a: 1}
+    - _Shell_top_color: {r: 0, g: 0.5377358, b: 0.14020362, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Wind_direction: {r: 1, g: 1, b: 0, a: 0}
     - _Wind_size: {r: 3, g: 3, b: 0, a: 0}
