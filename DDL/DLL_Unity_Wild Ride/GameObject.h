@@ -1,6 +1,6 @@
 #pragma once
-#ifndef _GAME_OBJECT_
-#define _GAME_OBJECT_
+#ifndef __GAME_OBJECT__
+#define __GAMEOBJECT__
 
 #include "PluginSettings.h"
 #include "Vector2D.h"
@@ -25,4 +25,4 @@ private:
 
 
 
-#endif /* defined(_GAMEOBJECT_) */
+#endif /* defined(__GAME_OBJECT__) */

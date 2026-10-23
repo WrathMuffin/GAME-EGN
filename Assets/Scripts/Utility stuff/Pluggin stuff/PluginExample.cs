@@ -7,5 +7,8 @@ public class PluginExample : MonoBehaviour
     {
         MyPlugin.ID = 67;
         Debug.Log(MyPlugin.ID);
+
+        //MyPlugin.Position = new Vector2D { x = 6.0f, y = 7.0f };
+        //Debug.Log(MyPlugin.Position);
     }
 }

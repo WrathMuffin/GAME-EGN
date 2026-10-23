@@ -1,6 +1,6 @@
 #pragma once
-#ifndef _PLUGIN_SETTINGS_
-#define _PLUGIN_SETTINGS_
+#ifndef __PLUGIN_SETTINGS__
+#define __PLUGIN_SETTINGS__
 	
 	#ifdef PLUGIN_EXPORTS	
 		#define PLUGIN_API __declspec(dllexport)
@@ -9,8 +9,8 @@
 		#define PLUGIN_API __declspec(dllimport)
 	
 	#else
-		#define PlUGIN_API
+		#define PLUGIN_API
 
 	#endif
 
-#endif // _PLUGIN_SETTINGS_
+#endif // __PLUGIN_SETTINGS__

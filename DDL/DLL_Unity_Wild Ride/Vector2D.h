@@ -1,10 +1,10 @@
 #pragma once
-#ifndef _VECTOR2D_
-#define _VECTOR2D_
+#ifndef __VECTOR2D__
+#define __VECTOR2D__
 
 struct Vector2D
 {
     float x, y;
 };
 
-#endif /* defined(_VECTOR2D_) */
+#endif /* defined(__VECTOR2D__) */

@@ -1,26 +1,27 @@
 #pragma once
-#ifndef _WRAPPER_
-#define _WRAPPER_
+#ifndef __WRAPPER__
+#define __WRAPPER__
 
 #include "PluginSettings.h"
 #include "Vector2D.h"
 
-#ifdef _cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 	#endif
 
-		PLUGIN_API int GetID(void* gameObject);
-		PLUGIN_API void SetID(void* gameObject, int id);
-		PLUGIN_API Vector2D GetPosition(void* gameObject);
-		PLUGIN_API void SetPosition(void* gameObject, float x, float y);
+		PLUGIN_API int GetID();
+		PLUGIN_API void SetID(int id);
+		PLUGIN_API Vector2D GetPosition();
+		PLUGIN_API void SetPosition(float x, float y);
 
-	#ifdef _cplusplus
+	#ifdef __cplusplus
 }
-#endif // _cplusplus
+
+#endif // __cplusplus
 
 
 
 
 
-#endif // _WRAPPER_
+#endif // __WRAPPER__

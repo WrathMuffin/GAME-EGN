@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "DLL_Unit.1963196e\\x64\\Release\\Main.obj",
+            "outputs": [
+                "DLL_Unit.1963196e\\x64\\Release\\Main.cpp.obj.dt.module.json",
+                "DLL_Unit.1963196e\\x64\\Release\\Main.cpp.obj.dt.d.json"
+            ],
+            "requires": []
+        }
+    ]
+}
