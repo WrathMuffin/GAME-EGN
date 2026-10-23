@@ -1,0 +1,13 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\spamt\\documents\\visual studio\\projects\\dll_unity_wild ride\\gameobject.cpp",
+        "ProvidedModule": "",
+        "Includes": [
+            "c:\\users\\spamt\\documents\\visual studio\\projects\\dll_unity_wild ride\\gameobject.h",
+            "c:\\users\\spamt\\documents\\visual studio\\projects\\dll_unity_wild ride\\vector2d.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}
