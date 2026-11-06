@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
         totalScore += score;
         Debug.Log("Current score: " + totalScore);
     }
-
+    /*
     public void WinGame()
     {
         if (isGameWin || isGameOver)
@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Time to camp!");
     }
-
+    */
     public void GameOver()
     {
         if (isGameWin || isGameOver)
@@ -57,10 +57,10 @@ public class GameManager : MonoBehaviour
         Debug.Log("The wildlife deos get a little quirky at night...");
     }
 
-    public bool IsGameWin()
-    {
-        return isGameWin;
-    }
+    //public bool IsGameWin()
+    //{
+    //    return isGameWin;
+    //}
     public bool IsGameOver()
     {
         return isGameOver;

@@ -17,6 +17,9 @@ public class FroggerController : MonoBehaviour
 
     private float currentHp;
 
+    private Transform currPos;
+    private float rotAngle;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
     {
@@ -37,7 +40,6 @@ public class FroggerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.W))
             {
                 TryLeap(Vector3.forward);
-                //anime.SetTrigger("Jump");
             }
 
             if (Input.GetKeyDown(KeyCode.A))
@@ -52,7 +54,7 @@ public class FroggerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.S))
             {
-                TryLeap(Vector3.back);
+              TryLeap(Vector3.back);
             }
 
             if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.S))
@@ -70,6 +72,10 @@ public class FroggerController : MonoBehaviour
                 ScenesManager.Instance.ShowTimeElapsed();
             }
         }
+
+        currPos = transform;
+
+
     }
 
     protected virtual void Rotation(Vector3 dir)
@@ -77,6 +83,7 @@ public class FroggerController : MonoBehaviour
         //  future lerp be here?
         transform.rotation = Quaternion.LookRotation(dir);
     }
+
 
     protected virtual bool TryLeap(Vector3 dir)
     {
@@ -150,15 +157,15 @@ public class FroggerController : MonoBehaviour
 
     public void GrowBody()
     {
-        GameObject newBody = Instantiate(bodyPrefab, transform.position, transform.rotation);
+        GameObject newBody = Instantiate(bodyPrefab, currPos, currPos);
     }
 
     public void MoveBody()
     {
         if (bodyPrefab != null)
         {
-            bodyPrefab.transform.position = transform.position;
-            bodyPrefab.transform.rotation = transform.rotation;
+            bodyPrefab.transform.position = currPos.position;
+            bodyPrefab.transform.rotation = currPos.rotation;
         }
     }
 }
