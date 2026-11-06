@@ -59,6 +59,16 @@ public class FroggerController : MonoBehaviour
             {
                 MoveBody();
             }
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                ScenesManager.Instance.RestartGame();
+            }
+
+            if (Input.GetKey(KeyCode.E))
+            {
+                ScenesManager.Instance.ShowTimeElapsed();
+            }
         }
     }
 
