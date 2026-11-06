@@ -1,11 +1,14 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class FroggerController : MonoBehaviour
 {
     [SerializeField] protected int leapDist = 4;
     [SerializeField] protected float leapSpeed = 10.0f;
     [SerializeField] protected float hp = 10f;
+
+    [SerializeField] protected GameObject bodyPrefab;
 
     [SerializeField] private LayerMask blockerLayer;
 
@@ -50,6 +53,11 @@ public class FroggerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.S))
             {
                 TryLeap(Vector3.back);
+            }
+
+            if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.S))
+            {
+                MoveBody();
             }
         }
     }
@@ -98,7 +106,7 @@ public class FroggerController : MonoBehaviour
         }
 
         transform.position = endPos;
-        
+
         isLeaping = false;
     }
 
@@ -122,6 +130,25 @@ public class FroggerController : MonoBehaviour
         if (other.CompareTag("Animals"))
         {
             Hit();
+        }
+
+        if (other.CompareTag("Food"))
+        {
+            GrowBody();
+        }
+    }
+
+    public void GrowBody()
+    {
+        GameObject newBody = Instantiate(bodyPrefab, transform.position, transform.rotation);
+    }
+
+    public void MoveBody()
+    {
+        if (bodyPrefab != null)
+        {
+            bodyPrefab.transform.position = transform.position;
+            bodyPrefab.transform.rotation = transform.rotation;
         }
     }
 }
