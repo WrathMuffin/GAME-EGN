@@ -8,28 +8,34 @@ public class FroggerController : MonoBehaviour
     [SerializeField] protected float leapSpeed = 10.0f;
     [SerializeField] protected float hp = 10f;
 
-    [SerializeField] protected GameObject bodyPrefab;
+    [SerializeField] protected GameObject bodyPrefab, newBody;
 
     [SerializeField] private LayerMask blockerLayer;
 
     //private Animator anime;
-    protected bool isLeaping = false;
+    protected bool isLeaping = false, isLeft = false, isRight = false;
 
     private float currentHp;
 
     private Transform currPos;
     private float rotAngle;
 
+    private float timer;
+    [SerializeField] private float duration = 0.0f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
     {
         //anime = GetComponent<Animator>();
         currentHp = hp;
+        currPos = transform;
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
+        timer += Time.deltaTime;
+
         if (isLeaping)
         {
             return;
@@ -37,29 +43,15 @@ public class FroggerController : MonoBehaviour
 
         if (currentHp > -10)
         {
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                TryLeap(Vector3.forward);
-            }
 
             if (Input.GetKeyDown(KeyCode.A))
             {
-                TryLeap(Vector3.left);
+                rotAngle += -90.0f;
             }
 
             if (Input.GetKeyDown(KeyCode.D))
             {
-                TryLeap(Vector3.right);
-            }
-
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-              TryLeap(Vector3.back);
-            }
-
-            if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.S))
-            {
-                MoveBody();
+                rotAngle += 90.0f;
             }
 
             if (Input.GetKeyDown(KeyCode.R))
@@ -73,9 +65,23 @@ public class FroggerController : MonoBehaviour
             }
         }
 
+
+
+        if (timer >= duration)
+        {
+            transform.rotation = Quaternion.Euler(0, rotAngle, 0);
+            transform.position += transform.forward * leapDist;
+
+            if (transform != currPos)
+            {
+                newBody.transform.position = currPos.position;
+                newBody.transform.rotation = currPos.rotation;
+            }
+
+            timer = 0f;
+        }
+
         currPos = transform;
-
-
     }
 
     protected virtual void Rotation(Vector3 dir)
@@ -157,15 +163,6 @@ public class FroggerController : MonoBehaviour
 
     public void GrowBody()
     {
-        GameObject newBody = Instantiate(bodyPrefab, currPos, currPos);
-    }
-
-    public void MoveBody()
-    {
-        if (bodyPrefab != null)
-        {
-            bodyPrefab.transform.position = currPos.position;
-            bodyPrefab.transform.rotation = currPos.rotation;
-        }
+        newBody = Instantiate(bodyPrefab, currPos, currPos);
     }
 }
