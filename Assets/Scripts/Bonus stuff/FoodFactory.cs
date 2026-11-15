@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FoodFactory : MonoBehaviour
 {
-    [SerializeField] private List<Food> foodPrefabs = new List<Food>();
+    // [SerializeField] private List<Food> foodPrefabs = new List<Food>();
 
     [SerializeField] private Vector2Int gridSize;
     [SerializeField] private GameObject planeToGrid;
@@ -34,13 +34,15 @@ public class FoodFactory : MonoBehaviour
 
     public void SpawnRandomFood()
     {
-        Food randomType = foodPrefabs[Random.Range(0, foodPrefabs.Count)];
+        //Food randomType = foodPrefabs[Random.Range(0, foodPrefabs.Count)];
 
         Vector3 randomPos = GetRandomGridPos();
 
-        Instantiate(randomType, randomPos, transform.rotation);
-        //duration = randomType.GetDuration();
+        PooManager.Instance.GetPoolObject(randomPos, transform.rotation);
 
+        //Instantiate(randomType, randomPos, transform.rotation);
+        
+        //duration = randomType.GetDuration();
         //return duration;
     }
 

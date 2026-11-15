@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Apple
   bonusScore: 10
-  despawnTime: 10
+  despawnTime: 5
 --- !u!1 &2446240410485164984
 GameObject:
   m_ObjectHideFlags: 0

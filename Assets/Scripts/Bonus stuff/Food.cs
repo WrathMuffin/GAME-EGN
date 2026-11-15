@@ -4,6 +4,9 @@ public abstract class Food : MonoBehaviour, IBonusItems
 {
     [SerializeField] protected int bonusScore;
     [SerializeField] protected float despawnTime;
+    //[SerializeField] protected float spawnTime;
+
+    private float timer;
 
     protected virtual void Start()
     {
@@ -12,7 +15,15 @@ public abstract class Food : MonoBehaviour, IBonusItems
 
     protected virtual void Update()
     {
-        Destroy(gameObject, despawnTime);
+        timer += Time.deltaTime;
+
+        if (timer >= despawnTime)
+        {
+            PooManager.Instance.DespawnObject(gameObject);
+            timer = 0f;
+        }
+
+        //Destroy(gameObject, despawnTime);
     }
 
     protected virtual void Behavior()
@@ -30,7 +41,9 @@ public abstract class Food : MonoBehaviour, IBonusItems
         if (other.CompareTag("Player"))
         {
             GameManager.Instance.AddScore(GetBonusScore());
-            Destroy(gameObject);
+            //Destroy(gameObject);
+
+            PooManager.Instance.DespawnObject(gameObject);
         }
     }
 }
